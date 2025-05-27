@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning</title>
+
+  <link rel="icon" href="images/Scizor_Icon.webp" type="image/webp">
+
+  <!-- Vendor CSS -->
+  <link rel="stylesheet" href="style/bulma.min.css">
+  <link rel="stylesheet" href="style/bulma-carousel.min.css">
+  <link rel="stylesheet" href="style/bulma-slider.min.css">
+  <link rel="stylesheet" href="style/academicons.min.css">
+  <!-- <link rel="stylesheet" href="js/fontawesome.all.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style/index.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand container">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title">SCIZOR <img src="images/scizor-icon.png" alt="SCIZOR icon" style="height:1.5em; vertical-align:middle; transform: scaleX(-1); margin-left:-0.3em; margin-right:-0.4em;">
+              : Self-Supervised Data Curation <br> for Large-Scale Imitation Learning</h1>
+            <p class="is-size-5 publication-authors">
+              <a href="https://www.linkedin.com/in/yu-zhang-b004a9290">Yu Zhang<sup>1</sup>*</a>, 
+              <a href="https://xieleo5.github.io">Yuqi Xie<sup>1,2</sup>*</a>, 
+              <a href="https://huihanl.github.io">Huihan Liu<sup>1†</sup></a>, 
+              <a href="https://shahrutav.github.io">Rutav Shah<sup>1†</sup></a>,<br>
+              <a href="https://www.linkedin.com/in/michaelwan1/">Michael Wan<sup>2</sup></a>, 
+              <a href="https://jimfan.me">Linxi “Jim” Fan<sup>2</sup></a>, 
+              <a href="https://yukezhu.me">Yuke Zhu<sup>1,2</sup></a>
+            </p>
+            <p class="is-size-5 publication-authors">
+              <sup>1</sup>: The University of Texas at Austin, <sup>2</sup>: NVIDIA
+            </p>
+            <p class="is-size-6 publication-authors">
+              *, †: Equal contribution
+            </p>
+            <!-- <p class="is-size-5 publication-authors">The University of Texas at Austin</p> -->
+            <!-- <p class="is-size-5 publication-authors has-text-primary">Arxiv</p> -->
+            <div class="publication-links" style="margin-top:1rem;">
+              <a href="./scizor.pdf" class="button is-rounded is-dark" style="margin:0 .5rem;"><span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span></a>
+              <!-- <a href="./paper.pdf" class="button is-rounded is-dark" style="margin:0 .5rem;"><span>Paper</span></a> -->
+              <a href="#" class="button is-rounded is-dark" style="margin:0 .5rem;"><span class="icon"><i class="fab fa-github"></i></span><span>Code (Coming Soon)</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Teaser -->
+  <section class="hero teaser">
+    <div class="hero-body">
+      <div class="container is-max-desktop has-text-centered">
+        <!-- video here -->
+        <div class="publication-video" style="margin-top:0rem;">
+          <video controls width="100%" style="border-radius:6px;">
+            <source src="video/scizor_website.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract -->
+      <div class="columns is-centered">
+        <div class="column is-four-fifths has-text-centered">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>Imitation learning advances robot capabilities by enabling the acquisition of diverse behaviors from human demonstrations. However, large-scale datasets used for policy training often introduce substantial variability in quality, which can negatively impact performance. As a result, automatically curating datasets by filtering low-quality samples to improve quality becomes essential. Existing robotic curation approaches rely on costly manual annotations and perform curation at a coarse granularity, such as the dataset or trajectory level, failing to account for the quality of individual state-action pairs. To address this, we introduce SCIZOR, a self-supervised data curation framework that filters out low-quality state-action pairs to improve the performance of imitation learning policies. SCIZOR targets two complementary sources of low-quality data: suboptimal data, which hinder learning with undesirable actions, and redundant data, which dilute training with repetitive patterns. SCIZOR leverages a self-supervised task progress predictor for suboptimal data to remove samples lacking task progression, and a deduplication module operating on joint state-action representation for samples with redundant patterns. Empirically, we show that SCIZOR enables imitation learning policies to achieve higher performance with less data, yielding an average improvement of 15.4% across multiple benchmarks.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Overview -->
+      <div class="columns is-centered">
+        <div class="column is-four-fifths has-text-centered">
+          <h2 class="title is-3">Overview</h2>
+          <div class="has-text-centered">
+            <img src="images/teasor_figure_v2.5.png" alt="Overview" style="max-width:100%;border-radius:6px;">
+          </div>
+          <div class="content has-text-justified">
+              <p>SCIZOR is a self-supervised data curation pipeline that slashes large imitation datasets by automatically pruning two types of low-value samples:</p>
+              <ul>
+                <li><strong>Suboptimal transitions</strong>: a progress-prediction model flags and removes frames that fail to make meaningful task progress, without needing reward signals.</li>
+                <li><strong>Redundant transitions</strong>: joint visual-action embeddings are clustered to detect and discard look-alike segments, ensuring diversity.</li>
+              </ul>
+              <p>By combining both filters, SCIZOR targets distinct sources of noise and repetition, yielding a higher-quality training set.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Method -->
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 has-text-centered">Method</h2>
+          <div class="has-text-centered">
+            <img src="images/Figure2_v2.2.png" alt="Overview" style="max-width:100%;border-radius:6px;margin-bottom:10px">
+          </div>
+          <div class="content has-text-justified">
+            <h3 class="title is-5">Suboptimal Transition Removal</h3>
+            <p>We train a self-supervised progress estimator that predicts how much progress a robot makes over short intervals. Transitions where predicted progress falls significantly below the elapsed time are flagged as suboptimal. This lets us automatically remove segments that stall or deviate from the task, all without any reward annotations.</p>
+          </div>
+          <div class="content has-text-justified">
+            <h3 class="title is-5">State-Action Deduplication</h3>
+            <p>We encode fixed-duration chunks into joint visual-action embeddings and use K-means clustering to group similar samples. Within each cluster, samples with high similarity scores are pruned, eliminating overrepresented patterns while preserving rare variations. This ensures a diverse, compact dataset that improves downstream learning.</p>
+          </div>
+          </div>
+        </div>
+          
+      <!-- Experiments -->
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 has-text-centered">Experiments</h2>
+          
+          <div class="content has-text-justified">
+            <p>We evaluate SCIZOR's impact on policy success rates across three benchmark: <strong>Robomimic</strong>, <strong>Sirius-Fleet</strong> and <strong>Open-X</strong>.  Compared to training on the full dataset, SCIZOR delivers absolute gains of <strong>5.4%,</strong> on RoboMimic, <strong>8.1%</strong> on OXE-Magic-Soup, and <strong>32.9%</strong> on the Sirius-Fleet real-robot tasks. It also surpasses uniform curation by <strong>16.1%</strong> on average, indicating that SCIZOR has a targeted selection of samples to be deleted. These improvements demonstrate that SCIZOR's data curation consistently filters out low-quality samples and improves policy learning in both simulated and real-world robotic environments.</p>
+          </div>
+
+
+          <div class="video-row">
+            <div class="video-box">
+              <video autoplay loop muted playsinline class="square-video">
+                <source src="video/robomimic_crop.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video-box">
+              <video autoplay loop muted playsinline class="square-video">
+                <source src="video/ours.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video-box">
+              <video autoplay loop muted playsinline class="rect-video">
+                <source src="video/simpler_crop.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="has-text-centered">
+            <figcaption class="is-size-6" style="margin-top:0rem; margin-bottom:0.5rem;">
+              Visualization of our evaluation environments.
+            </figcaption>
+          </div>
+          <div class="has-text-centered">
+            <figure style="display:inline-block; max-width:100%;"></figure>
+              <img src="images/main_results_v2.png" alt="Main Results" style="border-radius:6px; max-width:100%;">
+              <figcaption class="has-text-centered is-size-6" style="margin-top:0.0rem;">
+                Main results illustrating SCIZOR's performance improvements.
+              </figcaption>
+            </figure>
+          </div>
+          <br>
+          <div class="content has-text-justified">
+            <p>We also evaluated SCIZOR against two leading curation methods: <a href="https://joeyhejna.com/demonstration-info/" style="color: black; text-decoration: underline;">DemInf</a> (trajectory-level mutual information estimation) and <a href="https://arxiv.org/abs/2408.14037" style="color: black; text-decoration: underline;">Re-Mix</a> (dataset-level domain weighting). In the RT-X mixture setting, SCIZOR beat Re-Mix by <strong>3.5%</strong> on average. On RoboMimic, DemInf slightly outperformed SCIZOR due to pre-divided trajectory quality tiers. However, on the Sirius-Fleet dataset—where quality varies across human and policy data—SCIZOR outshone DemInf by <strong>19.2%</strong>, highlighting the advantage of fine-grained state-action curation under uneven data distributions.</p>
+          </div>
+
+          <h3 class="title is-4">SCIZOR greatly boosts policy performance on real-world datasets.</h3>
+      
+          <div class="grid">
+            <div class="item">
+              <video autoplay loop muted playsinline>
+                <source src="video/ours_hotbowl_merged_sdr.mp4" type="video/mp4">
+              </video>
+              <div class="label">Bowl To Plate:<br>93.3% <span class="increase">(↑28.3%)</span></div>
+            </div>
+            <div class="item">
+              <video autoplay loop muted playsinline>
+                <source src="video/ours_cup_to_basket_merged_sdr.mp4" type="video/mp4">
+              </video>
+              <div class="label">Mug To Basket:<br>66.7% <span class="increase">(↑31.7%)</span></div>
+            </div>
+            <div class="item">
+              <video autoplay loop muted playsinline>
+                <source src="video/ours_book_merged_sdr.mp4" type="video/mp4">
+              </video>
+              <div class="label">Book to Caddy:<br>66.7% <span class="increase">(↑26.7%)</span></div>
+            </div>
+            <div class="item">
+              <video autoplay loop muted playsinline>
+                <source src="video/ours_bread_merged_sdr.mp4" type="video/mp4">
+              </video>
+              <div class="label">Bread to Plate:<br>90.0% <span class="increase">(↑40.0%)</span></div>
+            </div>
+            <div class="item">
+              <video autoplay loop muted playsinline>
+                <source src="video/ours_cup_to_plate_merged_sdr.mp4" type="video/mp4">
+              </video>
+              <div class="label">Mug To Plate:<br>83.3% <span class="increase">(↑48.3%)</span></div>
+            </div>
+            <div class="item">
+              <video autoplay loop muted playsinline>
+                <source src="video/ours_redbowl_merged_sdr.mp4" type="video/mp4">
+              </video>
+              <div class="label">Bowl To Basket:<br>96.7% <span class="increase">(↑36.7%)</span></div>
+            </div>
+            <div class="item">
+              <video autoplay loop muted playsinline>
+                <source src="video/ours_cup_to_cad_merged_sdr.mp4" type="video/mp4">
+              </video>
+              <div class="label">Cup To Caddy:<br>73.3% <span class="increase">(↑8.3%)</span></div>
+            </div>
+            <div class="item">
+              <video autoplay loop muted playsinline>
+                <source src="video/ours_cup_to_oven_merged_sdr.mp4" type="video/mp4">
+              </video>
+              <div class="label">Mug to Oven:<br>66.7% <span class="increase">(↑31.7%)</span></div>
+            </div>
+          </div>
+
+
+          <h3 class="title is-4">We visualize the types of suboptimal data identified by SCIZOR.</h3>
+          <div class="failure-container">
+            <div class="failure-pair">
+              <video autoplay loop muted playsinline>
+                <source src="video/drop_crop.mp4" type="video/mp4">
+              </video>
+              <div class="description"><b>Manipulation Failure:</b> The bowl held by the robot dropped accidentally.</div>
+            </div>
+          
+            <div class="failure-pair">
+              <video autoplay loop muted playsinline>
+                <source src="video/slow_crop.mp4" type="video/mp4">
+              </video>
+              <div class="description"><b>Slow Motion:</b> The robot gripper moved towards the bowl at a slow pace.</div>
+            </div>
+          
+            <div class="failure-pair">
+              <video autoplay loop muted playsinline>
+                <source src="video/manip_crop.mp4" type="video/mp4">
+              </video>
+              <div class="description"><b>Manipulation Failure:</b> The robot gripper failed to grasp the blue mug.</div>
+            </div>
+          
+            <div class="failure-pair">
+              <video autoplay loop muted playsinline>
+                <source src="video/collision_crop.mp4" type="video/mp4">
+              </video>
+              <div class="description"><b>Stuck at Collision:</b> The book held by the robot collided with the caddy, leading to a halt.</div>
+            </div>
+          
+            <div class="failure-pair">
+              <video autoplay loop muted playsinline>
+                <source src="video/pause_crop.mp4" type="video/mp4">
+              </video>
+              <div class="description"><b>Pause:</b> The robot arm stopped at behind the cereal box for a long time.</div>
+            </div>
+          
+            <div class="failure-pair">
+              <video autoplay loop muted playsinline>
+                <source src="video/backforth_crop.mp4" type="video/mp4">
+              </video>
+              <div class="description"><b>Move Back and Forth:</b> The robot arm moved aimlessly and didn’t contribute to the task progress.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Conclusion -->
+      <!-- <div class="columns is-centered">
+        <div class="column is-four-fifths has-text-centered">
+          <h2 class="title is-3">Conclusion</h2>
+          <div class="content has-text-justified">
+            <p>SCIZOR offers a plug-and-play ...</p>
+          </div>
+        </div>
+      </div> -->
+      <!-- BibTeX -->
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 has-text-centered">BibTeX</h2>
+          <pre><code>@article{yu2025scizor,
+  title={SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning},
+  author={Zhang, Yu and Xie, Yuqi and Liu, Huihan and Shah, Rutav and Wan, Michael and Fan, Linxi and Zhu, Yuke},
+  journal={arXiv preprint arXiv:},
+  year={2025}
+}
+        </code></pre>
+        </div>
+      </div>
+
+    
+  <footer>
+    <p>© 2025 SCIZOR | For research purposes only.</p>
+  </footer>
+  </section>
+
+  <!-- Vendor JS -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/fontawesome.all.min.js"></script>
+  <script src="style/bulma-carousel.min.js"></script>
+  <script src="style/bulma-slider.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="js/index.js"></script>
+
+</body>
+</html>
