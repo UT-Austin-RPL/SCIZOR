@@ -1,0 +1,19 @@
+save_folder: expdata/semadedup/clustering
+seed: 42
+emb_memory_folder: embeddings/rtx_chunked
+modality: 
+    image_embeds: 0.8
+    action: 0.2
+niter: 100
+ncentroids: 500
+sim_metric: cosine
+Kmeans_with_cos_dist: True
+keep_hard: True
+eps_list:
+    - 0.01
+    - 0.03
+    - 0.05
+    - 0.07
+    - 0.1
+    - 0.15
+which_to_keep: hard

@@ -1,0 +1,9 @@
+tensorflow==2.15.0 
+tensorflow-datasets==4.9.2 
+tyro 
+submitit 
+tqdm 
+natsort 
+tensorflow-graphics==2021.12.3
+pandas
+imageio[ffmpeg]

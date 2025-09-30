@@ -1,0 +1,28 @@
+accelerate launch ./accelerate_train_one_loader.py \
+    --name robomimic \
+    --config.hdf5_dataset_kwargs.data_dir PATH_TO_ROBOMIMIC_HDF5_DATASET_FOLDER \
+    --config.hdf5_dataset_kwargs.batch_size=128 \
+    --config.save_dir ./subop_ckpt/robomimic \
+    --config.discriminator.action_query_length=1 \
+    --config.discriminator.num_blocks=6 \
+    --config.discriminator.head_token cls \
+    --config.optimizer.lr 1e-4 \
+    --config.num_steps 10000 \
+    --config.window_size=1 \
+    --config.action_horizon=1 \
+    --config.future_action=0 \
+    --config.discriminator.loss_fn_type=cross_entropy \
+    --port 1889 \
+    --config.save_interval 2000 \
+    --config.eval_interval 1000 \
+    --config.discriminator.no_action_input True \
+    --config.future_image True \
+    --config.discriminator.frozen_encoder=True \
+    --config.discriminator.encoder_type dinov2 \
+    --config.discriminator.d_model=768 \
+    --config.num_datasets=2 \
+    --config.discriminator.fusion_blocks_type=self-attn \
+    --config.discriminator.head_type=rank \
+    --config.discriminator.no_text_input True \
+    --config.grad_accum_steps 1 \
+    --config.discriminator_dataset_kwargs.image_key agentview_image
