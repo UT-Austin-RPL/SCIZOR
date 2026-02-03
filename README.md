@@ -135,9 +135,10 @@ python robomimic/scripts/train.py --config robomimic/exps/curation_exps/robomimi
 If you find this work useful, please cite it as follows:
 
 ```bibtex
-@article{yu2025scizor,
+@inproceedings{zhang2026scizor,
   title={SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning},
   author={Zhang, Yu and Xie, Yuqi and Liu, Huihan and Shah, Rutav and Wan, Michael and Fan, Linxi and Zhu, Yuke},
-  year={2025}
+  booktitle={IEEE International Conference on Robotics and Automation (ICRA)},
+  year={2026}
 }
 ```
