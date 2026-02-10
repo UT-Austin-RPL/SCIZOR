@@ -12,16 +12,16 @@ SCIZOR is a self-supervised data curation framework that removes suboptimal and 
 mamba create -n curation python==3.11.0
 mamba activate curation
 mamba install pytorch torchvision torchaudio pytorch-cuda=11.8 faiss-gpu=1.8.0 -c pytorch -c nvidia
-cd data-curation
+cd SCIZOR
 pip install -r requirements.txt
+pip install -e ./dlimp
+pip install -e .
 
+cd ../
+git clone https://github.com/PKU-YuanGroup/LanguageBind.git
 cd LanguageBind
 pip install -r requirements.txt
 pip install -e .
-cd ../
-
-pip install -e ./dlimp
-pip install -e ./data-curation
 ```
 
 If encounter the following error:
