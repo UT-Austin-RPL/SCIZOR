@@ -1,4 +1,4 @@
-# SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning
+# SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning
 
 <!-- add a image of the scizor logo -->
 
@@ -136,7 +136,7 @@ If you find this work useful, please cite it as follows:
 
 ```bibtex
 @inproceedings{zhang2026scizor,
-  title={SCIZOR: Self-Supervised Data Curation for Large-Scale Imitation Learning},
+  title={SCIZOR: A Self-Supervised Approach to Data Curation for Large-Scale Imitation Learning},
   author={Zhang, Yu and Xie, Yuqi and Liu, Huihan and Shah, Rutav and Wan, Michael and Fan, Linxi and Zhu, Yuke},
   booktitle={IEEE International Conference on Robotics and Automation (ICRA)},
   year={2026}
